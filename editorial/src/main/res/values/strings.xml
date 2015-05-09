@@ -3,4 +3,6 @@
 
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
+
+    <string name="URL_INFO">https://googledrive.com/host/0B_I3ieU7ibGTeTF4OEVLdzBJbkU/base-info-kr.json</string>
 </resources>

@@ -5,6 +5,7 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -22,13 +23,20 @@ import io.stalk.android.editorial.R;
  */
 public class RecyclerViewFragment extends Fragment {
 
+    public static final String TAG = RecyclerViewFragment.class.getSimpleName();
+
     private RecyclerView mRecyclerView;
     private RecyclerView.Adapter mAdapter;
+    private String newsId;
 
     private List<Object> mContentItems = new ArrayList<>();
 
-    public static RecyclerViewFragment newInstance() {
-        return new RecyclerViewFragment();
+    private RecyclerViewFragment(String id) {
+        this.newsId = id;
+    }
+
+    public static RecyclerViewFragment newInstance(String id) {
+        return new RecyclerViewFragment(id);
     }
 
     @Override
@@ -39,6 +47,10 @@ public class RecyclerViewFragment extends Fragment {
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+
+
+        Log.i(TAG, view.getId()+" - (NEWS ID - "+newsId+")");
+
         mRecyclerView = (RecyclerView) view.findViewById(R.id.recyclerView);
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getActivity());
         mRecyclerView.setLayoutManager(layoutManager);
@@ -52,4 +64,5 @@ public class RecyclerViewFragment extends Fragment {
 
         MaterialViewPagerHelper.registerRecyclerView(getActivity(), mRecyclerView, null);
     }
+
 }
